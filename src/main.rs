@@ -3,41 +3,11 @@ struct Board {
 }
 impl Board {
     fn generate_board_from_array(board_string: &[i8; 64]) -> Board {
-        //0 = empty square
-        // 1 = pawn
-        // 2 = knight
-        // 3 = bishop
-        // 4 = rook
-        // 5 = queen
-        // 6 = king
-        // positive means white
-        // negative means black
+        //0 = empty square, 1 = pawn, 2 = knight, 3 = bishop, 4 = rook, 5 = queen, 6 = king, positive means white, negative means black
         let mut board = Board { board: vec![] };
-        for i in board_string.iter().enumerate() {
-            let index: u32 = (i.0 + 1) as u32;
-            let piece_int = i.1.clone();
-            if piece_int == 0{
-                if ((index / 8) + 1) % 2 == 0 {
-                    if ((index / 8) * 8) % 2 == 0{
-                        board.board.push(Square{Square: (Piece::Empty, Color::White)})
-                    }
-                    else{
-                        board.board.push(Square{Square: (Piece::Empty, Color::Black)})
-                    }
-                }
-                else{
-                    if ((index / 8) * 8) % 2 == 0{
-                        board.board.push(Square{Square: (Piece::Empty, Color::Black)})
-                    }
-                    else{
-                        board.board.push(Square{Square: (Piece::Empty, Color::White)})
-                    }
-                }
-            }   
-            else{
-                board.board.push(Square::from(piece_int));
-            }
-           
+        for i in board_string.iter() {
+            let piece_int = i.clone();
+            board.board.push(Square::from(piece_int));
         }
         return board;
     }
