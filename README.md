@@ -7,7 +7,6 @@ Goals
 todo list for week one
 1.	Implement https://doc.rust-lang.org/std/str/trait.FromStr.html
 2.	Write unit tests instead of using the main function to test
-3.	change from inefficent vector bassed board representation
 4.	Implement From<u8> for Piece for your conversion from the numbers
 5.	implement move piece for board
 
@@ -15,6 +14,7 @@ completed weekly taks
 1. switch from weird enum bassed representation for tiles to a more ergonomic Vec<Vec<(Piece, Color)>> bassed representation(not yet commited because it breaks other parts of the program which will be fixed by implementing other items in the todo list)
 2. add a readme
 3. add a license
+4. switch form vector bassed board representation to array bassed board reperesentation
 
 
 unfortunatly I will not be accepting merge requests at the moment. My main goal right now is to improve personaly with this project. once I feel I have reached my goal of generally being able to do things the right way in this language I will open in up 
