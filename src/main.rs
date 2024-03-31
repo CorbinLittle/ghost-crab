@@ -15,6 +15,30 @@ impl Board {
         }
         return Board{board: board_array};
     }
+    fn generate_array_from_board(self) -> [i8; 64]{
+        let mut board_array: [i8; 64] = [0; 64];
+        for i in self.board.iter().enumerate(){ 
+            let index = i.0;
+            let square = i.1;
+            let mut square_int: i8;
+            match square{
+                Square{square: (Piece::Empty, ..)} => square_int = 0,
+                Square{square: (Piece::Pawn, ..)} => square_int = 1,
+                Square{square: (Piece::Knight, ..)} => square_int = 2,
+                Square{square: (Piece::Bishop, ..)} => square_int = 3,
+                Square{square: (Piece::Rook, ..)} => square_int = 4,
+                Square{square: (Piece::Queen, ..)} => square_int = 5,
+                Square{square: (Piece::King, ..)} => square_int = 6,
+            }
+            match square{
+                Square { square: (.., Color::Black) } => square_int *= -1,
+                _ => {}
+            }
+            board_array[index] = square_int
+
+        }
+        return board_array;
+    }
 }
 #[derive (Clone, Copy)]
 enum Color {
