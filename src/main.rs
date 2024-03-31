@@ -15,7 +15,7 @@ impl Board {
         }
         return Board{board: board_array};
     }
-    fn generate_array_from_board(self) -> [i8; 64]{
+    fn generate_array_from_board(&self) -> [i8; 64]{
         let mut board_array: [i8; 64] = [0; 64];
         for i in self.board.iter().enumerate(){ 
             let index = i.0;
@@ -38,6 +38,17 @@ impl Board {
 
         }
         return board_array;
+    }
+    fn show(&self){
+        let array = self.generate_array_from_board();
+        for i in array.iter().enumerate(){
+            let index = i.0 + 1;
+            let square = i.1;
+            print!("{}", square);
+            if index % 8 == 0{
+                print!("\n")
+            }
+        }
     }
 }
 #[derive (Clone, Copy)]
@@ -91,5 +102,7 @@ fn main() {
                                 -1, -1, -1, -1, -1, -1, -1, -1, 
                                 -4, -2, -3, -5, -6, -3, -2, -3];
     
-    let _board = Board::generate_board_from_array(&board_array);
+    let board = Board::generate_board_from_array(&board_array);
+    board.show()
+
 }
