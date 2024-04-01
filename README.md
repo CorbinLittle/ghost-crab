@@ -6,9 +6,10 @@ Goals
 
 todo list for week one
 1.	implement move piece for board
+2. add FEN support
 
 completed weekly taks
-1. switch from weird enum bassed representation for tiles to a more ergonomic Vec<Vec<(Piece, Color)>> bassed representation(not yet commited because it breaks other parts of the program which will be fixed by implementing other items in the todo list)
+1. switch from uninttive board bassed representation to a more intuitive representation
 2. add a readme
 3. add a license
 4. switch form vector bassed board representation to array bassed board reperesentation
