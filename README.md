@@ -5,8 +5,7 @@ Goals
    this will make it better for adding to existing chess apps written in rust.
 
 todo list for week one
-1.	implement move piece for board
-2. add FEN support
+all planned tasks have been finished.
 
 completed weekly taks
 1. switch from uninttive board bassed representation to a more intuitive representation
@@ -14,6 +13,8 @@ completed weekly taks
 3. add a license
 4. switch form vector bassed board representation to array bassed board reperesentation
 5.	Implement From<i8> for Square for your conversion from the numbers
+6. implement move piece for board
+7. implemented basic fen support. It curently only supports piece placement as I do not yet have any logic relating to castling, unpassant, or taking turns.
 
 
 unfortunatly I will not be accepting merge requests at the moment. My main goal right now is to improve personaly with this project. once I feel I have reached my goal of generally being able to do things the right way in this language I will open in up 

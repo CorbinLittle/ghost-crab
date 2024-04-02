@@ -50,6 +50,37 @@ impl Board {
             }
         }
     }
+    fn move_piece(&mut self, locations: ((u8, u8), (u8, u8))){
+        let move_from = (locations.0.0 * 8) + locations.0.1;
+        let move_to = (locations.1.0 * 8) + locations.1.1;
+        self.board[move_to as usize] = self.board[move_from as usize];
+        self.board[move_from as usize] =  Square::Empty;
+    }
+    fn generate_board_from_fen(fen: &str) -> Board{
+         let mut board = [Square::Empty; 64];
+         let mut index_counter: usize = 0;
+         for i in fen.chars(){
+            match i{
+                'p' => board[index_counter] = Square::Piece { color: Color::Black, piece: Piece::Pawn},
+                'n' => board[index_counter] = Square::Piece { color: Color::Black, piece: Piece::Knight},
+                'b' => board[index_counter] = Square::Piece { color: Color::Black, piece: Piece::Bishop},
+                'r' => board[index_counter] = Square::Piece { color: Color::Black, piece: Piece::Rook},
+                'q' => board[index_counter] = Square::Piece { color: Color::Black, piece: Piece::Queen},
+                'k' => board[index_counter] = Square::Piece { color: Color::Black, piece: Piece::King},
+                'P' => board[index_counter] = Square::Piece { color: Color::White, piece: Piece::Pawn},
+                'N' => board[index_counter] = Square::Piece { color: Color::White, piece: Piece::Knight},
+                'B' => board[index_counter] = Square::Piece { color: Color::White, piece: Piece::Bishop},
+                'R' => board[index_counter] = Square::Piece { color: Color::White, piece: Piece::Rook},
+                'Q' => board[index_counter] = Square::Piece { color: Color::White, piece: Piece::Queen},
+                'K' => board[index_counter] = Square::Piece { color: Color::White, piece: Piece::King},
+                '/' => index_counter -= 1,
+                ' ' => panic!("your fen input is invalid. we only suppoert piece placements at the moment"),
+                a => index_counter += (a.to_digit(10).unwrap() as usize) - 1
+            }
+            index_counter += 1
+         }
+         return  Board{board};
+    }
 }
 #[derive (Clone, Copy)]
 enum Color {
@@ -104,6 +135,9 @@ fn main() {
                                 4, 2, 3, 5, 6, 3, 2, 3];
     
     let board = Board::generate_board_from_array(&board_array);
-    board.show()
+    board.show();
+    let fen_input = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
+    let test_board = Board::generate_board_from_fen(fen_input);
+    test_board.show()
 
 }
